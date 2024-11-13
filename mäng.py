@@ -18,67 +18,83 @@ pygame.display.set_caption("rock-paper-scissors")
 
 class Paper(pygame.sprite.Sprite):
       def __init__(self):
-        super().__init__() 
-        self.image = pygame.image.load("paper.png")
-        self.rect = self.image.get_rect()
-        self.rect.center=(randint(50,SCREEN_WIDTH-50),randint(50, SCREEN_HEIGHT-50)) 
+          super().__init__() 
+          self.image = pygame.image.load("paper.png")
+          self.rect = self.image.get_rect()
+          self.rect.center = (randint(50, SCREEN_WIDTH-50), randint(50, SCREEN_HEIGHT-50))
+          self.dx = randint(-3, 3)
+          self.dy = randint(-3, 3)
  
       def move(self):
-        self.rect.move_ip(randint(-10,10),randint(-10, 10))
-        if (self.rect.top <= 0):
-            self.rect.move_ip(randint(-10,10), randint(0, 10))
-        if (self.rect.right >= 400):
-            self.rect.move_ip(randint(-10,0),randint(-5, 5))
-        if (self.rect.left <= 0):
-            self.rect.move_ip(randint(0,10),randint(-5, 5))
-        if (self.rect.bottom >= 600):
-            self.rect.move_ip(randint(-10,10),randint(-10, 0))
+          # Muuda kiirust vähehaaval, et sujuvam liikumine
+          if randint(0, 20) == 0:  # Väike võimalus suuna muutmiseks
+              self.dx += randint(-1, 1)
+              self.dy += randint(-1, 1)
+
+          # Piira kiirus maksimaalselt 3-ga
+          self.dx = max(-3, min(self.dx, 3))
+          self.dy = max(-3, min(self.dy, 3))
+
+          # Uuenda positsiooni
+          self.rect.move_ip(self.dx, self.dy)
+
+          # Kontrolli piire ja põrka tagasi, kui on servas
+          if self.rect.top <= 0 or self.rect.bottom >= SCREEN_HEIGHT:
+              self.dy *= -1
+          if self.rect.left <= 0 or self.rect.right >= SCREEN_WIDTH:
+              self.dx *= -1
  
       def draw(self, surface):
-        surface.blit(self.image, self.rect) 
-        
+          surface.blit(self.image, self.rect)
+
 class Rock(pygame.sprite.Sprite):
       def __init__(self):
-        super().__init__() 
-        self.image = pygame.image.load("rock.png")
-        self.rect = self.image.get_rect()
-        self.rect.center=(randint(50,SCREEN_WIDTH-50),randint(50, SCREEN_HEIGHT-50)) 
+          super().__init__() 
+          self.image = pygame.image.load("rock.png")
+          self.rect = self.image.get_rect()
+          self.rect.center = (randint(50, SCREEN_WIDTH-50), randint(50, SCREEN_HEIGHT-50))
+          self.dx = randint(-3, 3)
+          self.dy = randint(-3, 3)
  
       def move(self):
-        self.rect.move_ip(randint(-10,10),randint(-10, 10))
-        if (self.rect.top <= 0):
-            self.rect.move_ip(randint(-10,10), randint(0, 10))
-        if (self.rect.right >= 400):
-            self.rect.move_ip(randint(-10,0),randint(-5, 5))
-        if (self.rect.left <= 0):
-            self.rect.move_ip(randint(0,10),randint(-5, 5))
-        if (self.rect.bottom >= 600):
-            self.rect.move_ip(randint(-10,10),randint(-10, 0))
+          if randint(0, 20) == 0:
+              self.dx += randint(-1, 1)
+              self.dy += randint(-1, 1)
+          self.dx = max(-3, min(self.dx, 3))
+          self.dy = max(-3, min(self.dy, 3))
+          self.rect.move_ip(self.dx, self.dy)
+          if self.rect.top <= 0 or self.rect.bottom >= SCREEN_HEIGHT:
+              self.dy *= -1
+          if self.rect.left <= 0 or self.rect.right >= SCREEN_WIDTH:
+              self.dx *= -1
  
       def draw(self, surface):
-        surface.blit(self.image, self.rect)   
+          surface.blit(self.image, self.rect)
+
 class Scissors(pygame.sprite.Sprite):
       def __init__(self):
-        super().__init__() 
-        self.image = pygame.image.load("scissors.png")
-        self.rect = self.image.get_rect()
-        self.rect.center=(randint(50,SCREEN_WIDTH-50),randint(50, SCREEN_HEIGHT-50)) 
+          super().__init__() 
+          self.image = pygame.image.load("scissors.png")
+          self.rect = self.image.get_rect()
+          self.rect.center = (randint(50, SCREEN_WIDTH-50), randint(50, SCREEN_HEIGHT-50))
+          self.dx = randint(-3, 3)
+          self.dy = randint(-3, 3)
  
       def move(self):
-        self.rect.move_ip(randint(-10,10),randint(-10, 10))
-        if (self.rect.top <= 0):
-            self.rect.move_ip(randint(-10,10), randint(0, 10))
-        if (self.rect.right >= 400):
-            self.rect.move_ip(randint(-10,0),randint(-5, 5))
-        if (self.rect.left <= 0):
-            self.rect.move_ip(randint(0,10),randint(-5, 5))
-        if (self.rect.bottom >= 600):
-            self.rect.move_ip(randint(-10,10),randint(-10, 0))
+          if randint(0, 20) == 0:
+              self.dx += randint(-1, 1)
+              self.dy += randint(-1, 1)
+          self.dx = max(-3, min(self.dx, 3))
+          self.dy = max(-3, min(self.dy, 3))
+          self.rect.move_ip(self.dx, self.dy)
+          if self.rect.top <= 0 or self.rect.bottom >= SCREEN_HEIGHT:
+              self.dy *= -1
+          if self.rect.left <= 0 or self.rect.right >= SCREEN_WIDTH:
+              self.dx *= -1
  
       def draw(self, surface):
-        surface.blit(self.image, self.rect)   
- 
-         
+          surface.blit(self.image, self.rect)
+
 R = Rock()
 P = Paper()
 S = Scissors()
@@ -88,6 +104,8 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+
+    # Objekti liigutamine ja joonistamine
     R.move()
     P.move()
     S.move()
