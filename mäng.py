@@ -8,6 +8,9 @@
 # Autorid: Maria Jansons, Kaur Huko Käämbre
 #
 # Eeskuju: https://rock0n.itch.io/rock-paper-scissors-simulator
+#
+# Programmi (mäng.py) käivitamiseks on tarvis teeki pygame (https://www.pygame.org/wiki/GettingStarted)
+#
 ##################################################
 
 import pygame, sys
