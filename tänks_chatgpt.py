@@ -27,7 +27,7 @@ class Paper(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.type = "Paper"
-        self.image = pygame.image.load("paper.png")
+        self.image = pygame.image.load("assets/paper.png")
         self.rect = self.image.get_rect()
         self.rect.center = (randint(50, SCREEN_WIDTH-50), randint(50, SCREEN_HEIGHT-50))
         self.dx = randint(-3, 3)
@@ -48,13 +48,13 @@ class Paper(pygame.sprite.Sprite):
     def transform_to(self, new_type):
         """Muudab objekti tüüpi (pilt ja tüüp)."""
         if new_type == "Rock":
-            self.image = pygame.image.load("rock.png")
+            self.image = pygame.image.load("assets/rock.png")
             self.type = "Rock"
         elif new_type == "Scissors":
-            self.image = pygame.image.load("scissors.png")
+            self.image = pygame.image.load("assets/scissors.png")
             self.type = "Scissors"
         elif new_type == "Paper":
-            self.image = pygame.image.load("paper.png")
+            self.image = pygame.image.load("assets/paper.png")
             self.type = "Paper"
 
     def draw(self, surface):
@@ -64,13 +64,13 @@ class Rock(Paper):  # Pärib omadused Paper klassilt
     def __init__(self):
         super().__init__()
         self.type = "Rock"
-        self.image = pygame.image.load("rock.png")
+        self.image = pygame.image.load("assets/rock.png")
 
 class Scissors(Paper):  # Pärib omadused Paper klassilt
     def __init__(self):
         super().__init__()
         self.type = "Scissors"
-        self.image = pygame.image.load("scissors.png")
+        self.image = pygame.image.load("assets/scissors.png")
 
 # Funktsioon kollisioonide kontrolliks ja muundamiseks
 def check_collision(obj1, obj2):
