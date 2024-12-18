@@ -10,7 +10,7 @@ def start_setup():
     print("a")
     shared.display_surf.fill(shared.VALTER_VALGE)
     
-    button = Button(80, 300, 100, 50)
+    button = shared.Button(80, 300, 100, 50, game_setup)
     buttons.append(button)
     
     shared.current_tick = start_tick
@@ -20,5 +20,5 @@ def start_tick(events):
         if event.type != MOUSEBUTTONDOWN: continue
     
         for button in buttons:
-            if button.collidepoint(event.pos):
-                event_func()
+            if button.button.collidepoint(event.pos):
+                button.function()
