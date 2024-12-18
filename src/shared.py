@@ -1,5 +1,7 @@
 import pygame
 
+FONT = None
+
 VALTER_VALGE = (255, 255, 255)
 GANDALF_HALL = (140, 140, 140)
 
