@@ -5,17 +5,6 @@ import shared
 
 all_entities = None
 
-class EntityType:
-    def __init__(self, id, image_source):
-        self.id = id
-        self.image_source = image_source
-
-ENTITY_TYPES = [
-    EntityType("rock", "src/assets/rock.png"),
-    EntityType("paper", "src/assets/paper.png"),
-    EntityType("scissors", "src/assets/scissors.png")
-]
-
 class Entity(pygame.sprite.Sprite): # Entity on kas kivi/paber/käärid
 
     def __init__(self, type):
@@ -31,7 +20,7 @@ class Entity(pygame.sprite.Sprite): # Entity on kas kivi/paber/käärid
 
     def set_type(self, type):
         self.type = type
-        self.image = pygame.image.load(type.image_source)
+        self.image = pygame.image.load(type.image())
     
     def tick(self):
         self.move()
@@ -96,13 +85,13 @@ def game_tick(events):
         shared.win_setup(potential_winner.type)
     
 def game_setup():
-    shared.display_surf.fill(shared.VALTER_VALGE)
+    shared.uireset()
     
     global all_entities
     all_entities = []
     
-    for i in range(shared.ENTITY_COUNT):
-        for entity_type in ENTITY_TYPES:
+    for entity_type in shared.ENTITY_TYPES:
+        for i in range(entity_type.count):
             new_entity = Entity(entity_type)
             all_entities.append(new_entity)
     
