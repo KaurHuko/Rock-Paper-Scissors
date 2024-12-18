@@ -13,7 +13,7 @@ current_tick = None
 display_surf = None
 
 class Button:
-    def __init__(self, x, y, w, h, fun, text, image_path):
+    def __init__(self, x, y, w, h, fun, text = None, image_path = None):
         self.button = pygame.Rect(x, y, w, h)
         if image_path == None:
             pygame.draw.rect(display_surf, GANDALF_HALL, self.button)
