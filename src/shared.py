@@ -18,7 +18,17 @@ win_setup = None
 
 class Button:
     def __init__(self, x, y, w, h, fun, text = None, image_path = None):
-        self.button = pygame.Rect(x, y, w, h)
+        left_x = x - w/2
+        left_y = y - h/2
+        
+        self.button = pygame.Rect(left_x, left_y, w, h)
+        self.function = fun
+        
         if image_path == None:
             pygame.draw.rect(display_surf, GANDALF_HALL, self.button)
-        self.function = fun
+        
+        if (text != None):
+            font = pygame.font.SysFont("Comic Sans MS", 40)
+            text = font.render(text, True, (0, 0, 0))
+            text_rect = text.get_rect(center=(x, y))
+            display_surf.blit(text, text_rect)

@@ -7,11 +7,9 @@ buttons = []
 def start_setup():
     shared.display_surf.fill(shared.VALTER_VALGE)
     
-    button_width = 200
-    button_x = (shared.SCREEN_WIDTH - button_width) / 2
-    
-    buttons.append(shared.Button(button_x, 300, button_width, 60, shared.game_setup, "Start Game"))
-    buttons.append(shared.Button(button_x, 400, button_width, 60, pygame.quit, "Quit"))
+    button_x = (shared.SCREEN_WIDTH) / 2
+    buttons.append(shared.Button(button_x, 300, 250, 60, shared.game_setup, "Start Game"))
+    buttons.append(shared.Button(button_x, 400, 250, 60, pygame.quit, "Quit"))
     
     shared.current_tick = start_tick
 

@@ -43,6 +43,7 @@ def setup():
     pygame.display.set_caption("rock-paper-scissors")
     
     pygame.init()
+    pygame.font.init()
     shared.display_surf = pygame.display.set_mode((shared.SCREEN_WIDTH, shared.SCREEN_HEIGHT))
     
     shared.start_setup()
