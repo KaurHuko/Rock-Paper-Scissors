@@ -1,17 +1,17 @@
 import pygame
 from pygame.locals import *
 import shared
-from game import game_setup
 
 buttons = []
 
 def start_setup():
-    
-    print("a")
     shared.display_surf.fill(shared.VALTER_VALGE)
     
-    button = shared.Button(80, 300, 100, 50, game_setup)
-    buttons.append(button)
+    button_width = 200
+    button_x = (shared.SCREEN_WIDTH - button_width) / 2
+    
+    buttons.append(shared.Button(button_x, 300, button_width, 60, shared.game_setup, "Start Game"))
+    buttons.append(shared.Button(button_x, 400, button_width, 60, pygame.quit, "Quit"))
     
     shared.current_tick = start_tick
 
@@ -22,3 +22,5 @@ def start_tick(events):
         for button in buttons:
             if button.button.collidepoint(event.pos):
                 button.function()
+
+shared.start_setup = start_setup

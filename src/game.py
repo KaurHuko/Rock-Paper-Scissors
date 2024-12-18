@@ -3,7 +3,7 @@ from pygame.locals import *
 from random import *
 import shared
 
-all_entities = []
+all_entities = None
 
 class EntityType:
     def __init__(self, id, image_source):
@@ -79,9 +79,9 @@ class Entity(pygame.sprite.Sprite): # Entity on kas kivi/paber/käärid
         shared.display_surf.blit(self.image, self.rect)
 
 def find_winner():
-    potential_winner = all_entities[0].type.id
+    potential_winner = all_entities[0]
     for entity in all_entities:
-        if (entity.type.id != potential_winner):
+        if (entity.type.id != potential_winner.type.id):
             return None
     return potential_winner
 
@@ -93,15 +93,13 @@ def game_tick(events):
         
     potential_winner = find_winner()
     if (potential_winner != None):
-        print(potential_winner + " won")
-        shared.current_tick = win_menu_tick
+        shared.win_setup(potential_winner.type)
     
-def win_menu_tick():
-    pass
-
 def game_setup():
-    print(shared.display_surf)
     shared.display_surf.fill(shared.VALTER_VALGE)
+    
+    global all_entities
+    all_entities = []
     
     for i in range(shared.ENTITY_COUNT):
         for entity_type in ENTITY_TYPES:
@@ -109,3 +107,5 @@ def game_setup():
             all_entities.append(new_entity)
     
     shared.current_tick = game_tick
+
+shared.game_setup = game_setup

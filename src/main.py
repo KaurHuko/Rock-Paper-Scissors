@@ -16,8 +16,13 @@
 import pygame, sys
 from pygame.locals import *
 from random import *
+
 import shared
-from startmenu import start_setup
+
+# Import to load start event functions
+import game
+import startmenu
+import win
 
 def check_for_quit(events):
     for event in events:
@@ -40,7 +45,7 @@ def setup():
     pygame.init()
     shared.display_surf = pygame.display.set_mode((shared.SCREEN_WIDTH, shared.SCREEN_HEIGHT))
     
-    start_setup()
+    shared.start_setup()
     
     while True:
         tick()
