@@ -10,6 +10,7 @@
 # Eeskuju: https://rock0n.itch.io/rock-paper-scissors-simulator
 #
 # Programmi (mäng.py) käivitamiseks on tarvis teeki pygame (https://www.pygame.org/wiki/GettingStarted)
+# python -m pip install pygame-widgets
 #
 ##################################################
 
@@ -45,6 +46,8 @@ def setup():
     pygame.init()
     pygame.font.init()
     shared.display_surf = pygame.display.set_mode((shared.SCREEN_WIDTH, shared.SCREEN_HEIGHT))
+    
+    shared.FONT = pygame.font.SysFont("Comic Sans MS", 40)
     
     shared.start_setup()
     
