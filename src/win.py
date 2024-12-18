@@ -7,7 +7,16 @@ buttons = []
 def win_setup(winner):
     shared.display_surf.fill(shared.VALTER_VALGE)
     
-    print(winner)
+    winnerimg = pygame.image.load(winner.image_source)
+    winnerimg = pygame.transform.scale(winnerimg, (200, 200))
+    shared.display_surf.blit(winnerimg, (200, 225))
+    winnertext = ((winner.id) + " wins!")
+    font = pygame.font.SysFont("Comic Sans MS", 50)
+    winnertext = font.render(winnertext, True, (0, 0, 0))
+    text_rect = winnertext.get_rect(center=(300, 200))
+    shared.display_surf.blit(winnertext, text_rect)
+    
+    print(winner.id)
     
     button_x = (shared.SCREEN_WIDTH) / 2
     
