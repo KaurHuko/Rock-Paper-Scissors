@@ -9,12 +9,11 @@ def win_setup(winner):
     
     print(winner)
     
-    button_width = 200
-    button_x = (shared.SCREEN_WIDTH - button_width) / 2
+    button_x = (shared.SCREEN_WIDTH) / 2
     
-    buttons.append(shared.Button(button_x, 500, button_width, 60, shared.game_setup, "Restart"))
-    buttons.append(shared.Button(button_x, 600, button_width, 60, shared.start_setup, "Main Menu"))
-    buttons.append(shared.Button(button_x, 700, button_width, 60, pygame.quit, "Quit"))
+    buttons.append(shared.Button(button_x, 500, 250, 60, shared.game_setup, "Restart"))
+    buttons.append(shared.Button(button_x, 600, 250, 60, shared.start_setup, "Main Menu"))
+    buttons.append(shared.Button(button_x, 700, 250, 60, pygame.quit, "Quit"))
     
     shared.current_tick = win_tick
 
