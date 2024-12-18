@@ -85,14 +85,12 @@ def find_winner():
             return None
     return potential_winner
 
-def game_tick():
+def game_tick(events):
     shared.display_surf.fill(shared.VALTER_VALGE)
     
     for entity in all_entities:
         entity.tick()
         
-    pygame.display.update()
-    
     potential_winner = find_winner()
     if (potential_winner != None):
         print(potential_winner + " won")

@@ -5,5 +5,5 @@ import shared
 def win_setup():
     pass
 
-def win_tick():
+def win_tick(events):
     pass
