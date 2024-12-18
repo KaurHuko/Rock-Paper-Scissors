@@ -10,10 +10,11 @@ def win_setup(winner):
     winnerimg = pygame.image.load(winner.image_source)
     winnerimg = pygame.transform.scale(winnerimg, (200, 200))
     shared.display_surf.blit(winnerimg, (200, 225))
-    winnertext = ((winner.id) + " wins!")
-    font = pygame.font.SysFont("Comic Sans MS", 50)
+    winnername = winner.id[0].upper() + winner.id[1:]
+    winnertext = (winnername + " wins!")
+    font = pygame.font.SysFont("Comic Sans MS", 80)
     winnertext = font.render(winnertext, True, (0, 0, 0))
-    text_rect = winnertext.get_rect(center=(300, 200))
+    text_rect = winnertext.get_rect(center=(300, 100))
     shared.display_surf.blit(winnertext, text_rect)
     
     print(winner.id)

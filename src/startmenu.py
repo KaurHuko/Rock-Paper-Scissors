@@ -25,6 +25,10 @@ def start_setup():
     add_button(300, shared.game_setup, "Start Game")
     add_button(400, pygame.quit, "Quit")
     
+    logo = pygame.image.load("src/assets/logo.png")
+    logo = pygame.transform.scale(logo, (600, 268))
+    logo_rect = logo.get_rect(center=(300, 150))
+    shared.display_surf.blit(logo, logo_rect)
     shared.current_tick = start_tick
 
 def start_tick(events):
