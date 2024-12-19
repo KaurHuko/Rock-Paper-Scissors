@@ -1,19 +1,3 @@
-################################################
-# Programmeerimine I
-# 2024/2025 sügissemester
-#
-# Projekt
-# Teema: Kivi-Paber-Käärid simulatsioon
-#
-# Autorid: Maria Jansons, Kaur Huko Käämbre
-#
-# Eeskuju: https://rock0n.itch.io/rock-paper-scissors-simulator
-#
-# Programmi (mäng.py) käivitamiseks on tarvis teeki pygame (https://www.pygame.org/wiki/GettingStarted)
-# python -m pip install pygame-widgets
-#
-##################################################
-
 import pygame, sys
 from pygame.locals import *
 from random import *

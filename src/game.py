@@ -4,6 +4,10 @@ from random import *
 import shared
 
 all_entities = None
+entity_size = None
+
+def find_entity_size(count):
+    pass
 
 class Entity(pygame.sprite.Sprite): # Entity on kas kivi/paber/käärid
 
@@ -20,7 +24,10 @@ class Entity(pygame.sprite.Sprite): # Entity on kas kivi/paber/käärid
 
     def set_type(self, type):
         self.type = type
+        
         self.image = pygame.image.load(type.image())
+        self.image = pygame.transform.scale(self.image, (50, 50))
+        
     
     def tick(self):
         self.move()
