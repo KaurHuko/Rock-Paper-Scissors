@@ -59,7 +59,7 @@ def add_slider(y):
     
     slider = Slider(shared.display_surf,
                     button_x, y, button_w, 15,
-                    min=1, max=25, step=1,
+                    min=1, max=150, step=1,
                     initial=shared.ENTITY_TYPES[index].count,
                     handleRadius=10
                     

@@ -2,13 +2,16 @@ import pygame
 from pygame.locals import *
 from random import *
 import shared
+import math
 
 all_entities = None
 entity_size = None
 
 def find_entity_size(count):
-    pass
-
+    area_per_entity = 175000 / count
+    global entity_size
+    entity_size = math.sqrt(area_per_entity)
+    
 class Entity(pygame.sprite.Sprite): # Entity on kas kivi/paber/käärid
 
     def __init__(self, type):
@@ -17,7 +20,9 @@ class Entity(pygame.sprite.Sprite): # Entity on kas kivi/paber/käärid
         self.set_type(type)
         
         self.rect = self.image.get_rect()
-        self.rect.center = (randint(50, shared.SCREEN_WIDTH-50), randint(50, shared.SCREEN_HEIGHT-50))
+        w = self.rect.width
+        h = self.rect.height
+        self.rect.center = (randint(w, shared.SCREEN_WIDTH - w), randint(h, shared.SCREEN_HEIGHT - h))
         
         self.dx = randint(-3, 3)
         self.dy = randint(-3, 3)
@@ -26,7 +31,7 @@ class Entity(pygame.sprite.Sprite): # Entity on kas kivi/paber/käärid
         self.type = type
         
         self.image = pygame.image.load(type.image())
-        self.image = pygame.transform.scale(self.image, (50, 50))
+        self.image = pygame.transform.scale(self.image, (entity_size, entity_size))
         
     
     def tick(self):
@@ -94,6 +99,8 @@ def game_tick(events):
 def game_setup():
     shared.uireset()
     
+    find_entity_size(shared.ENTITY_TYPES[0].count + shared.ENTITY_TYPES[1].count + shared.ENTITY_TYPES[2].count)
+    
     global all_entities
     all_entities = []
     
@@ -101,6 +108,7 @@ def game_setup():
         for i in range(entity_type.count):
             new_entity = Entity(entity_type)
             all_entities.append(new_entity)
+    
     
     shared.current_tick = game_tick
 
