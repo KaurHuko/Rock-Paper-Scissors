@@ -8,7 +8,7 @@ all_entities = None
 entity_size = None
 
 def find_entity_size(count):
-    area_per_entity = 175000 / count
+    area_per_entity = 75000 / count
     global entity_size
     entity_size = math.sqrt(area_per_entity)
     
